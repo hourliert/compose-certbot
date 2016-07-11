@@ -12,7 +12,7 @@ services:
       - "80:80"
       - "443:443"
     entrypoint: ""
-    command: bash -c "certbot auth -n --standalone -d ${DOMAIN_CERTBOT} --agree-tos --email ${LETSENCRYPT_EMAIL}"
+    command: bash -c "certbot auth -n --standalone -d ${DOMAIN} --agree-tos --email ${LETSENCRYPT_EMAIL}"
 
 networks:
   back:
