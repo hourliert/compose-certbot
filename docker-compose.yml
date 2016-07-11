@@ -1,0 +1,23 @@
+version: '2'
+services:
+  certbot:
+    image: quay.io/letsencrypt/letsencrypt
+    container_name: certbot
+    networks:
+      - back
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    entrypoint: ""
+    command: bash -c "certbot auth -n --standalone -d ${DOMAIN_CERTBOT} --agree-tos --email ${LETSENCRYPT_EMAIL}"
+
+networks:
+  back:
+
+volumes:
+  letsencrypt:
+    external:
+      name: ${LETSENCRYPT_VOLUME}
